@@ -1,0 +1,14 @@
+{
+    "name": "drupal/plentific_demo",
+    "description": "A demo module",
+    "type": "drupal-custom-module",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Andrew Farquharson",
+            "email": "farquharson.a@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
