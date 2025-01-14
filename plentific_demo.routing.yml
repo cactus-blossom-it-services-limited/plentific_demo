@@ -1,0 +1,7 @@
+plentific_demo.api_settings:
+  path: '/admin/config/system/api-settings'
+  defaults:
+    _title: 'Api settings'
+    _form: 'Drupal\plentific_demo\Form\ApiSettingsForm'
+  requirements:
+    _permission: 'administer site configuration'

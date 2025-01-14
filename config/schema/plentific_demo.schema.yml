@@ -1,0 +1,8 @@
+# Schema for the configuration files of the Plentific Demo module.
+plentific_demo.settings:
+  type: config_object
+  label: 'Plentific Demo settings'
+  mapping:
+    example:
+      type: string
+      label: 'Example'
