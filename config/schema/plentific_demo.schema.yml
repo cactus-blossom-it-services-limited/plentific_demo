@@ -1,8 +1,16 @@
-# Schema for the configuration files of the Plentific Demo module.
-plentific_demo.settings:
-  type: config_object
-  label: 'Plentific Demo settings'
+block.settings.plentific_demo_plentific_api:
+  type: block_settings
+  label: 'Plentific API block'
   mapping:
-    example:
+    number_of_items_per_page:
+      type: integer
+      label: The no. of items per page in the user list view
+    email_field_label:
       type: string
-      label: 'Example'
+      label: The column heading in the user list view
+    forename_field_label:
+      type: string
+      label: The column heading in the user list view
+    surname_field_label:
+      type: string
+      label: The column heading in the user list view
