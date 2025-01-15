@@ -61,23 +61,24 @@ final class PlentificApiBlock extends BlockBase implements ContainerFactoryPlugi
    * {@inheritdoc}
    */
   public function blockForm($form, FormStateInterface $form_state): array {
-    $form['number_of_items_per_page'] = [
-      '#type' => 'text',
-      '#title' => $this->t('No. of Items per page'),
-      '#default_value' => $this->configuration['number_of_items_per_page'],
+    $form['number_of_items_per_page_choice'] = [
+      '#type' => 'select',
+      '#options' => array('3', '4', '5', '6'),
+      '#size' => 4,
+      '#title' => $this->t('Choose the number of Items per page'),
     ];
-    $form['email_field_label'] = [
-      '#type' => 'text',
+    $form['email_field_label_text'] = [
+      '#type' => 'textfield',
       '#title' => $this->t('Email field label'),
       '#default_value' => $this->configuration['email_field_label'],
     ];
-    $form['forename_field_label'] = [
-      '#type' => 'text',
+    $form['forename_field_label_text'] = [
+      '#type' => 'textfield',
       '#title' => $this->t('Forename field label'),
       '#default_value' => $this->configuration['forename_field_label'],
     ];
-    $form['surname_field_label'] = [
-      '#type' => 'text',
+    $form['surname_field_label_text'] = [
+      '#type' => 'textfield',
       '#title' => $this->t('Surname field label'),
       '#default_value' => $this->configuration['surname_field_label'],
     ];
