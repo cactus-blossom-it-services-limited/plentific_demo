@@ -8,7 +8,7 @@ use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\plentific_demo\PersonInterface;
+use Drupal\plentific_demo\Entity\PersonInterface;
 
 /**
  * Defines the person entity class.
@@ -26,7 +26,7 @@ use Drupal\plentific_demo\PersonInterface;
  *   bundle_label = @Translation("Person type"),
  *   handlers = {
  *     "list_builder" = "Drupal\plentific_demo\PersonListBuilder",
- *     "views_data" = "Drupal\views\EntityViewsData",
+ *     "views_data" = "Drupal\plentific_demo\PersonEntityViewsData",
  *     "form" = {
  *       "add" = "Drupal\plentific_demo\Form\PersonForm",
  *       "edit" = "Drupal\plentific_demo\Form\PersonForm",
@@ -65,9 +65,164 @@ final class Person extends ContentEntityBase implements PersonInterface {
   /**
    * {@inheritdoc}
    */
-  public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array {
+  public function getEmail() {
+    return $this->get('email')->value;
+  }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function setEmail($email) {
+    $this->set('email', $email);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getFirstname() {
+    return $this->get('firstname')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setFirstname($firstname) {
+    $this->set('email', $firstname);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getSurname() {
+    return $this->get('surname')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setSurname($surname) {
+    $this->set('surname', $surname);
+    return $this;
+  }
+
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getRemoteId() {
+    return $this->get('remote_id')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setRemoteId($id) {
+    $this->set('remote_id', $id);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCreatedTime() {
+    return $this->get('created')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setCreatedTime($timestamp) {
+    $this->set('created', $timestamp);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array {
     $fields = parent::baseFieldDefinitions($entity_type);
+
+    $fields['email'] = BaseFieldDefinition::create('email')
+      ->setLabel(t('Email'))
+      ->setDescription(t('The Person\'s email address.'))
+      ->setDefaultValue('')
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE)
+      ->addConstraint('UserMailRequired')
+      ->addConstraint('UserMailUnique');
+
+
+    $fields['firstname'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('First Name'))
+      ->setDescription(t('The first name of the Person.'))
+      ->setSettings([
+        'max_length' => 255,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'string',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['surname'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Surname'))
+      ->setDescription(t('The surname of the Person.'))
+      ->setSettings([
+        'max_length' => 255,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'string',
+        'weight' => -5
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -5,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['number'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('Number'))
+      ->setDescription(t('The Person number.'))
+      ->setSettings([
+        'min' => 1,
+        'max' => 1000,
+      ])
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'number_unformatted',
+        'weight' => -4,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'number',
+        'weight' => -4,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['remote_id'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('Remote ID'))
+      ->setDescription(t('The remote ID of the Product.'))
+      ->setSettings([
+        'max_length' => 10,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('');
+
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Authored on'))

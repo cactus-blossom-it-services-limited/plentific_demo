@@ -89,25 +89,6 @@ interface PersonInterface extends ContentEntityInterface, EntityChangedInterface
   public function setRemoteId($id);
 
   /**
-   * Gets the Person source.
-   *
-   * @return string
-   *   The Person source.
-   */
-  public function getSource();
-
-  /**
-   * Sets the Person source.
-   *
-   * @param string $source
-   *   The Person source.
-   *
-   * @return \Drupal\plentific_demo\Entity\PersonInterface
-   *   The called Person entity.
-   */
-  public function setSource($source);
-
-  /**
    * Gets the Person creation timestamp.
    *
    * @return int

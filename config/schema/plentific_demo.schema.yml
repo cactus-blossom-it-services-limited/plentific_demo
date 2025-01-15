@@ -38,9 +38,6 @@ plentific_demo.importer.*:
     update_existing:
       type: boolean
       label: Whether to update existing users
-    source:
-      type: string
-      label: The source of the users
     bundle:
       type: string
       label: The person bundle
