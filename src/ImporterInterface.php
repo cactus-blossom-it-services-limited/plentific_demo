@@ -14,4 +14,13 @@ interface ImporterInterface {
    */
   public function label(): string;
 
+  /**
+   * Performs the import.
+   *
+   * Returns TRUE if the import was successful or FALSE otherwise.
+   *
+   * @return bool
+   */
+  public function import();
+
 }

@@ -10,7 +10,7 @@ use Drupal\plentific_demo\ImporterPluginBase;
  * Plugin implementation of the importer.
  *
  * @Importer(
- *   id = "foo",
+ *   id = "json",
  *   label = @Translation("Foo"),
  *   description = @Translation("Foo description.")
  * )
