@@ -7,11 +7,42 @@ namespace Drupal\plentific_demo\Form;
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\plentific_demo\Entity\Importer;
+use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\Url;
+use Drupal\plentific_demo\Plugin\ImporterManager;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Importer form.
+ * Form for creating/editing Importer entities.
  */
 final class ImporterForm extends EntityForm {
+  /**
+   * @var ImporterManager
+   */
+  protected $importerManager;
+
+  /**
+   * ImporterForm constructor.
+   *
+   * @param ImporterManager $importerManager
+   * @param MessengerInterface $messenger
+   */
+  public function __construct(ImporterManager
+                              $importerManager, MessengerInterface $messenger) {
+    $this->importerManager = $importerManager;
+    $this->messenger = $messenger;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface
+                                $container) {
+    return new static(
+      $container->get('plugin.manager.importer'),
+      $container->get('messenger')
+    );
+  }
 
   /**
    * {@inheritdoc}

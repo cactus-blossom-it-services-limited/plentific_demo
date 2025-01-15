@@ -1,4 +1,4 @@
 services:
   plugin.manager.importer:
-    class: Drupal\plentific_demo\ImporterPluginManager
+    class: Drupal\plentific_demo\Plugin\ImporterManager
     parent: default_plugin_manager

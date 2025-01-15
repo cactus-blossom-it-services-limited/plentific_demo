@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\plentific_demo;
+namespace Drupal\plentific_demo\Plugin;
 
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
@@ -12,7 +12,7 @@ use Drupal\plentific_demo\Annotation\Importer;
 /**
  * Importer plugin manager.
  */
-final class ImporterPluginManager extends DefaultPluginManager {
+final class ImporterManager extends DefaultPluginManager {
 
   /**
    * Constructs the object.
