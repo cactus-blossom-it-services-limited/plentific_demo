@@ -69,17 +69,17 @@ final class PlentificApiBlock extends BlockBase implements ContainerFactoryPlugi
     ];
     $form['email_field_label_text'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Email field label'),
+      '#title' => $this->t('The Email column heading in the user list view'),
       '#default_value' => $this->configuration['email_field_label'],
     ];
     $form['forename_field_label_text'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Forename field label'),
+      '#title' => $this->t('The Forename column heading in the user list view'),
       '#default_value' => $this->configuration['forename_field_label'],
     ];
     $form['surname_field_label_text'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Surname field label'),
+      '#title' => $this->t('The Surname column heading in the user list view'),
       '#default_value' => $this->configuration['surname_field_label'],
     ];
     return $form;
