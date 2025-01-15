@@ -162,8 +162,6 @@ final class Person extends ContentEntityBase implements PersonInterface {
         'type' => 'string_textfield',
         'weight' => -5,
       ]);
-//      ->addConstraint('UserMailUnique');
-
 
     $fields['firstname'] = BaseFieldDefinition::create('string')
       ->setLabel(t('First Name'))
@@ -223,7 +221,7 @@ final class Person extends ContentEntityBase implements PersonInterface {
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
-    
+
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Authored on'))
       ->setDescription(t('The time that the person was created.'))
