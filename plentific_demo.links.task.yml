@@ -1,0 +1,26 @@
+entity.person.view:
+  title: 'View'
+  route_name: entity.person.canonical
+  base_route: entity.person.canonical
+entity.person.edit_form:
+  title: 'Edit'
+  route_name: entity.person.edit_form
+  base_route: entity.person.canonical
+entity.person.delete_form:
+  title: 'Delete'
+  route_name: entity.person.delete_form
+  base_route: entity.person.canonical
+  weight: 10
+entity.person.collection:
+  title: 'Persons'
+  route_name: entity.person.collection
+  base_route: system.admin_content
+  weight: 10
+entity.person_type.edit_form:
+  title: 'Edit'
+  route_name: entity.person_type.edit_form
+  base_route: entity.person_type.edit_form
+entity.person_type.collection:
+  title: 'List'
+  route_name: entity.person_type.collection
+  base_route: entity.person_type.collection

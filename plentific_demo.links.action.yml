@@ -3,3 +3,15 @@ entity.importer.add_form:
   title: 'Add importer'
   appears_on:
     - entity.importer.collection
+
+person.type_add:
+  title: 'Add person type'
+  route_name: entity.person_type.add_form
+  appears_on:
+    - entity.person_type.collection
+
+person.add_page:
+  title: 'Add person'
+  route_name: entity.person.add_page
+  appears_on:
+    - entity.person.collection

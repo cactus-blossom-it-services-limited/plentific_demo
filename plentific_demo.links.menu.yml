@@ -10,3 +10,15 @@ entity.importer.overview:
   parent: system.admin_structure
   description: 'List of importers to extend site functionality.'
   route_name: entity.importer.collection
+
+entity.person_type.collection:
+  title: 'Person types'
+  description: 'Manage and CRUD actions on Person type.'
+  parent: system.admin_structure
+  route_name: entity.person_type.collection
+
+entity.person.collection:
+  title: 'Persons'
+  description: 'List of persons.'
+  route_name: entity.person.collection
+  parent: system.admin_content

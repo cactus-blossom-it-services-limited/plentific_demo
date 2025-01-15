@@ -41,3 +41,6 @@ plentific_demo.importer.*:
     source:
       type: string
       label: The source of the users
+    bundle:
+      type: string
+      label: The person bundle

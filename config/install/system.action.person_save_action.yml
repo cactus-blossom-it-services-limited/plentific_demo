@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - plentific_demo
+id: person_save_action
+label: 'Save persons'
+type: person
+plugin: entity:save_action:person
+configuration: {  }
