@@ -106,13 +106,6 @@ class ImporterForm extends EntityForm {
       '#default_value' => $importer->updateExisting(),
     ];
 
-    $form['source'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Source'),
-      '#description' => $this->t('The source of the users.'),
-      '#default_value' => $importer->getSource(),
-    ];
-
     return $form;
   }
 

@@ -152,7 +152,17 @@ final class Person extends ContentEntityBase implements PersonInterface {
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE)
       ->addConstraint('UserMailRequired')
-      ->addConstraint('UserMailUnique');
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'string',
+        'weight' => -5,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -5,
+      ]);
+//      ->addConstraint('UserMailUnique');
 
 
     $fields['firstname'] = BaseFieldDefinition::create('string')
@@ -186,18 +196,18 @@ final class Person extends ContentEntityBase implements PersonInterface {
       ->setDisplayOptions('view', [
         'label' => 'hidden',
         'type' => 'string',
-        'weight' => -5
+        'weight' => -3
       ])
       ->setDisplayOptions('form', [
         'type' => 'string_textfield',
-        'weight' => -5,
+        'weight' => -3,
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['number'] = BaseFieldDefinition::create('integer')
-      ->setLabel(t('Number'))
-      ->setDescription(t('The Person number.'))
+    $fields['remote_id'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('Remote ID'))
+      ->setDescription(t('The Person remote ID.'))
       ->setSettings([
         'min' => 1,
         'max' => 1000,
@@ -205,25 +215,15 @@ final class Person extends ContentEntityBase implements PersonInterface {
       ->setDisplayOptions('view', [
         'label' => 'above',
         'type' => 'number_unformatted',
-        'weight' => -4,
+        'weight' => -6,
       ])
       ->setDisplayOptions('form', [
         'type' => 'number',
-        'weight' => -4,
+        'weight' => -6,
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
-
-    $fields['remote_id'] = BaseFieldDefinition::create('integer')
-      ->setLabel(t('Remote ID'))
-      ->setDescription(t('The remote ID of the Product.'))
-      ->setSettings([
-        'max_length' => 10,
-        'text_processing' => 0,
-      ])
-      ->setDefaultValue('');
-
-
+    
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Authored on'))
       ->setDescription(t('The time that the person was created.'))
