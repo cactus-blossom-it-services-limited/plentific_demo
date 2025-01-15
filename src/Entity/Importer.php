@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Drupal\plentific_demo\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityBase;
-use Drupal\plentific_demo\ImporterInterface;
 use Drupal\Core\Url;
 
 /**
@@ -57,46 +56,52 @@ final class Importer extends ConfigEntityBase implements ImporterInterface {
 
   /**
    * The Importer ID.
+   *
+   * @var string
    */
-  protected string $id;
+  protected $id;
 
   /**
    * The Importer label.
+   *
+   * @var string
    */
-  protected string $label;
-
-  /**
-   * The Importer description.
-   */
-  protected string $description;
+  protected $label;
 
   /**
    * The URL from where the import file can be retrieved.
    *
    * @var string
    */
-  protected string $url;
+  protected $url;
 
   /**
    * The plugin ID of the plugin to be used for processing this import.
    *
    * @var string
    */
-  protected string $plugin;
+  protected $plugin;
 
   /**
-   * Whether or not to update existing products if they have already been imported.
+   * Whether to update existing products if they have already been imported.
    *
    * @var bool
    */
-  protected bool $update_existing = TRUE;
+  protected $update_existing = TRUE;
 
   /**
    * The source of the products.
    *
    * @var string
    */
-  protected string $source;
+  protected $source;
+
+  /**
+   * The product bundle.
+   *
+   * @var string
+   */
+  protected $bundle;
 
   /**
    * {@inheritdoc}
@@ -125,5 +130,6 @@ final class Importer extends ConfigEntityBase implements ImporterInterface {
   public function getSource() {
     return $this->source;
   }
+
 
 }

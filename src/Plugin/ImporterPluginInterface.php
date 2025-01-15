@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\plentific_demo;
+namespace Drupal\plentific_demo\Plugin;
 
 use Drupal\Component\Plugin\PluginInspectionInterface;
 
@@ -16,6 +16,6 @@ interface ImporterPluginInterface extends
    *
    * @return bool
    */
-  public function import();
+  public function import(): bool;
 
 }

@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\plentific_demo\Plugin\Importer;
 
-use Drupal\plentific_demo\ImporterPluginBase;
+use Drupal\plentific_demo\Annotation\Importer;
+use Drupal\plentific_demo\Plugin\ImporterBase;
 
 /**
  * Plugin implementation of the importer.
@@ -15,6 +16,10 @@ use Drupal\plentific_demo\ImporterPluginBase;
  *   description = @Translation("Foo description.")
  * )
  */
-final class Foo extends ImporterPluginBase {
+final class Foo extends ImporterBase {
+
+  public function import(): bool {
+    // TODO: Implement import() method
+  }
 
 }

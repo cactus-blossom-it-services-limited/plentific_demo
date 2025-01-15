@@ -1,4 +1,5 @@
 services:
-  plugin.manager.importer:
+  plentific_demo.importer:
     class: Drupal\plentific_demo\Plugin\ImporterManager
     parent: default_plugin_manager
+    arguments: ['@entity_type.manager', '@messenger']

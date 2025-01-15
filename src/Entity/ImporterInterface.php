@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\plentific_demo;
+namespace Drupal\plentific_demo\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Url;
@@ -36,5 +36,6 @@ interface ImporterInterface extends ConfigEntityInterface {
    * @return string
    */
   public function getSource();
+
 
 }

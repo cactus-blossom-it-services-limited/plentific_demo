@@ -1,12 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\plentific_demo\Form;
 
 use Drupal\Core\Entity\EntityForm;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\plentific_demo\Entity\Importer;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Url;
 use Drupal\plentific_demo\Plugin\ImporterManager;
@@ -15,69 +13,104 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Form for creating/editing Importer entities.
  */
-final class ImporterForm extends EntityForm {
+class ImporterForm extends EntityForm {
+
   /**
-   * @var ImporterManager
+   * The importer manager.
+   *
+   * @var \Drupal\plentific_demo\Plugin\ImporterManager
    */
   protected $importerManager;
 
   /**
    * ImporterForm constructor.
    *
-   * @param ImporterManager $importerManager
-   * @param MessengerInterface $messenger
+   * @param \Drupal\plentific_demo\Plugin\ImporterManager $importerManager
+   *   The importer manager.
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   *   The messenger.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   The entity type manager.
    */
-  public function __construct(ImporterManager
-                              $importerManager, MessengerInterface $messenger) {
+  public function __construct(ImporterManager $importerManager, MessengerInterface $messenger, EntityTypeManagerInterface $entityTypeManager) {
     $this->importerManager = $importerManager;
     $this->messenger = $messenger;
+    $this->entityTypeManager = $entityTypeManager;
   }
 
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface
-                                $container) {
+  public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('plugin.manager.importer'),
-      $container->get('messenger')
+      $container->get('plentific_demo.importer'),
+      $container->get('messenger'),
+      $container->get('entity_type.manager')
     );
   }
 
   /**
    * {@inheritdoc}
    */
-  public function form(array $form, FormStateInterface $form_state): array {
-
+  public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
+
+    /** @var \Drupal\plentific_demo\Entity\ImporterInterface $importer */
+    $importer = $this->entity;
 
     $form['label'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Label'),
+      '#title' => $this->t('Name'),
       '#maxlength' => 255,
-      '#default_value' => $this->entity->label(),
+      '#default_value' => $importer->label(),
+      '#description' => $this->t('Name of the Importer.'),
       '#required' => TRUE,
     ];
 
     $form['id'] = [
       '#type' => 'machine_name',
-      '#default_value' => $this->entity->id(),
+      '#default_value' => $importer->id(),
       '#machine_name' => [
-        'exists' => [Importer::class, 'load'],
+        'exists' => '\Drupal\plentific_demo\Entity\Importer::load',
       ],
-      '#disabled' => !$this->entity->isNew(),
+      '#disabled' => !$importer->isNew(),
     ];
 
-    $form['status'] = [
+    $form['url'] = [
+      '#type' => 'url',
+      '#default_value' => $importer->getUrl() instanceof Url ? $importer->getUrl()->toString() : '',
+      '#title' => $this->t('Url'),
+      '#description' => $this->t('The URL to the import resource'),
+      '#required' => TRUE,
+    ];
+
+    $definitions = $this->importerManager->getDefinitions();
+    $options = [];
+    foreach ($definitions as $id => $definition) {
+      $options[$id] = $definition['label'];
+    }
+
+    $form['plugin'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Plugin'),
+      '#default_value' => $importer->getPluginId(),
+      '#options' => $options,
+      '#description' => $this->t('The plugin to be used with this importer.'),
+      '#required' => TRUE,
+    ];
+
+    $form['update_existing'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Enabled'),
-      '#default_value' => $this->entity->status(),
+      '#title' => $this->t('Update existing'),
+      '#description' => $this->t('Whether to update existing users if already imported.'),
+      '#default_value' => $importer->updateExisting(),
     ];
 
-    $form['description'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Description'),
-      '#default_value' => $this->entity->get('description'),
+    $form['source'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Source'),
+      '#description' => $this->t('The source of the users.'),
+      '#default_value' => $importer->getSource(),
     ];
 
     return $form;
@@ -86,17 +119,25 @@ final class ImporterForm extends EntityForm {
   /**
    * {@inheritdoc}
    */
-  public function save(array $form, FormStateInterface $form_state): int {
-    $result = parent::save($form, $form_state);
-    $message_args = ['%label' => $this->entity->label()];
-    $this->messenger()->addStatus(
-      match($result) {
-        \SAVED_NEW => $this->t('Created new example %label.', $message_args),
-        \SAVED_UPDATED => $this->t('Updated example %label.', $message_args),
-      }
-    );
-    $form_state->setRedirectUrl($this->entity->toUrl('collection'));
-    return $result;
+  public function save(array $form, FormStateInterface $form_state) {
+    /** @var \Drupal\plentific_demo\Entity\Importer $importer */
+    $importer = $this->entity;
+    $status = $importer->save();
+
+    switch ($status) {
+      case SAVED_NEW:
+        $this->messenger->addMessage($this->t('Created the %label Importer.', [
+          '%label' => $importer->label(),
+        ]));
+        break;
+
+      default:
+        $this->messenger->addMessage($this->t('Saved the %label Importer.', [
+          '%label' => $importer->label(),
+        ]));
+    }
+
+    $form_state->setRedirectUrl($importer->toUrl('collection'));
   }
 
 }
