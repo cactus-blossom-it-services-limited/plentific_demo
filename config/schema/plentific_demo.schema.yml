@@ -14,3 +14,18 @@ block.settings.plentific_demo_plentific_api:
     surname_field_label:
       type: string
       label: The column heading in the user list view
+
+plentific_demo.importer.*:
+  type: config_entity
+  label: Importer
+  mapping:
+    id:
+      type: string
+      label: ID
+    label:
+      type: label
+      label: Label
+    uuid:
+      type: string
+    description:
+      type: string
