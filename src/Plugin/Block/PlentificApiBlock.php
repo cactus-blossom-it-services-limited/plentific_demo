@@ -97,7 +97,14 @@ final class PlentificApiBlock extends BlockBase implements ContainerFactoryPlugi
    */
   public function build(): array {
     $build['content'] = [
-      '#markup' => $this->t('It works!'),
+      '#type' => 'table',
+      '#header' => [$this->t('Email!!'), $this->t('First!!'), $this->t('Surname!!')],
+      '#rows' => [],
+      '#empty' => $this->t('There are no users to display'),
+    ];
+    $build['pager'] = [
+      '#type' => 'pager',
+      '#weight' => 10,
     ];
     return $build;
   }
