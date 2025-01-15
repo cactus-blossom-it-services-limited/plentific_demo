@@ -16,7 +16,7 @@ use Drupal\plentific_demo\Entity\ImporterInterface;
 /**
  * Base class for importer plugins.
  */
-abstract class ImporterPluginBase extends PluginBase implements ImporterInterface {
+abstract class ImporterPluginBase extends PluginBase implements ImporterPluginInterface {
   /**
    * @var \Drupal\Core\Entity\EntityTypeManager
    */

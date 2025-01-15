@@ -4,23 +4,37 @@ declare(strict_types=1);
 
 namespace Drupal\plentific_demo;
 
+use Drupal\Core\Config\Entity\ConfigEntityInterface;
+use Drupal\Core\Url;
+
+
 /**
- * Interface for importer plugins.
+ * Importer configuration entity.
  */
-interface ImporterInterface {
-
+interface ImporterInterface extends ConfigEntityInterface {
   /**
-   * Returns the translated plugin label.
-   */
-  public function label(): string;
-
-  /**
-   * Performs the import.
+   * Returns the Url where the import can get the data from.
    *
-   * Returns TRUE if the import was successful or FALSE otherwise.
+   * @return Url
+   */
+  public function getUrl();
+  /**
+   * Returns the Importer plugin ID to be used by this importer.
+   *
+   * @return string
+   */
+  public function getPluginId();
+  /**
+   * Whether or not to update existing products if they have already been imported.
    *
    * @return bool
    */
-  public function import();
+  public function updateExisting();
+  /**
+   * Returns the source of the products.
+   *
+   * @return string
+   */
+  public function getSource();
 
 }

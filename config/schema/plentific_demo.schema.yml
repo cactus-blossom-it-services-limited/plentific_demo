@@ -29,3 +29,15 @@ plentific_demo.importer.*:
       type: string
     description:
       type: string
+    url:
+      type: uri
+      label: Uri
+    plugin:
+      type: string
+      label: Plugin ID
+    update_existing:
+      type: boolean
+      label: Whether to update existing users
+    source:
+      type: string
+      label: The source of the users

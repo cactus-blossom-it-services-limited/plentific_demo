@@ -8,7 +8,7 @@ use Drupal\Core\Config\Entity\ConfigEntityListBuilder;
 use Drupal\Core\Entity\EntityInterface;
 
 /**
- * Provides a listing of importers.
+ * Provides a listing of importer entities.
  */
 final class ImporterListBuilder extends ConfigEntityListBuilder {
 
@@ -16,9 +16,8 @@ final class ImporterListBuilder extends ConfigEntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader(): array {
-    $header['label'] = $this->t('Label');
+    $header['label'] = $this->t('Importer');
     $header['id'] = $this->t('Machine name');
-    $header['status'] = $this->t('Status');
     return $header + parent::buildHeader();
   }
 
@@ -29,7 +28,6 @@ final class ImporterListBuilder extends ConfigEntityListBuilder {
     /** @var \Drupal\plentific_demo\ImporterInterface $entity */
     $row['label'] = $entity->label();
     $row['id'] = $entity->id();
-    $row['status'] = $entity->status() ? $this->t('Enabled') : $this->t('Disabled');
     return $row + parent::buildRow($entity);
   }
 

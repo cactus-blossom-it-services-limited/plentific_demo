@@ -6,6 +6,7 @@ namespace Drupal\plentific_demo\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\plentific_demo\ImporterInterface;
+use Drupal\Core\Url;
 
 /**
  * Defines the importer entity type.
@@ -29,7 +30,7 @@ use Drupal\plentific_demo\ImporterInterface;
  *     },
  *   },
  *   config_prefix = "importer",
- *   admin_permission = "administer importer",
+ *   admin_permission = "administer site configuration",
  *   links = {
  *     "collection" = "/admin/structure/importer",
  *     "add-form" = "/admin/structure/importer/add",
@@ -45,24 +46,84 @@ use Drupal\plentific_demo\ImporterInterface;
  *     "id",
  *     "label",
  *     "description",
+ *     "url",
+ *     "plugin",
+ *     "update_existing",
+ *     "source"
  *   },
  * )
  */
 final class Importer extends ConfigEntityBase implements ImporterInterface {
 
   /**
-   * The example ID.
+   * The Importer ID.
    */
   protected string $id;
 
   /**
-   * The example label.
+   * The Importer label.
    */
   protected string $label;
 
   /**
-   * The example description.
+   * The Importer description.
    */
   protected string $description;
+
+  /**
+   * The URL from where the import file can be retrieved.
+   *
+   * @var string
+   */
+  protected string $url;
+
+  /**
+   * The plugin ID of the plugin to be used for processing this import.
+   *
+   * @var string
+   */
+  protected string $plugin;
+
+  /**
+   * Whether or not to update existing products if they have already been imported.
+   *
+   * @var bool
+   */
+  protected bool $update_existing = TRUE;
+
+  /**
+   * The source of the products.
+   *
+   * @var string
+   */
+  protected string $source;
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getUrl() {
+    return $this->url ? Url::fromUri($this->url) : NULL;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getPluginId() {
+    return $this->plugin;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function updateExisting() {
+    return $this->update_existing;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getSource() {
+    return $this->source;
+  }
 
 }
