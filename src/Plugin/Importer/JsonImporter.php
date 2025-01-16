@@ -45,7 +45,8 @@ class JsonImporter extends ImporterBase {
     $config = $this->configuration['config'];
     $request = $this->httpClient->get($config->getUrl()->toString());
     $string = $request->getBody()->getContents();
-    return json_decode($string);
+    var_dump(json_decode($string)->data->id); die();
+    return json_decode($string)->data;
   }
 
   /**
@@ -70,8 +71,8 @@ class JsonImporter extends ImporterBase {
       $person = $this->entityTypeManager->getStorage('person')->create($values);
       $person->setRemoteId($data->id);
       $person->setEmail($data->email);
-      $person->setFirstname($data->firstname);
-      $person->setSurname($data->surname);
+      $person->setFirstname($data->first_name);
+      $person->setLastname($data->last_name);
       $person->save();
       return;
     }
@@ -84,8 +85,8 @@ class JsonImporter extends ImporterBase {
     $person = reset($existing);
     $person->setRemoteId($data->id);
     $person->setEmail($data->email);
-    $person->setFirstname($data->firstname);
-    $person->setSurname($data->surname);
+    $person->setFirstname($data->first_name);
+    $person->setLastname($data->last_name);
     $person->save();
   }
 

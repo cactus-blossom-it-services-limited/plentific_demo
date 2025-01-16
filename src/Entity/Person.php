@@ -102,7 +102,7 @@ final class Person extends ContentEntityBase implements PersonInterface {
   /**
    * {@inheritdoc}
    */
-  public function setSurname($surname) {
+  public function setLastname($surname) {
     $this->set('surname', $surname);
     return $this;
   }

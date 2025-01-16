@@ -56,7 +56,7 @@ interface PersonInterface extends ContentEntityInterface, EntityChangedInterface
    * @return string
    *   The surname.
    */
-  public function getSurname();
+  public function getLastname();
 
   /**
    * Sets the Person surname.
@@ -67,7 +67,7 @@ interface PersonInterface extends ContentEntityInterface, EntityChangedInterface
    * @return \Drupal\plentific_demo\Entity\PersonInterface
    *   The called Person entity.
    */
-  public function setSurname(string $surname);
+  public function setLastname(string $surname);
 
   /**
    * Gets the Person remote ID.
