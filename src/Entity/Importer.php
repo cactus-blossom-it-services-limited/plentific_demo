@@ -127,8 +127,8 @@ final class Importer extends ConfigEntityBase implements ImporterInterface {
   /**
    * {@inheritdoc}
    */
-  public function getSource() {
-    return $this->source;
+  public function getBundle() {
+    return $this->bundle;
   }
 
 

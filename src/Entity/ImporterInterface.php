@@ -30,12 +30,5 @@ interface ImporterInterface extends ConfigEntityInterface {
    * @return bool
    */
   public function updateExisting();
-  /**
-   * Returns the source of the products.
-   *
-   * @return string
-   */
-  public function getSource();
-
-
+  
 }

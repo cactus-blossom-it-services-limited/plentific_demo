@@ -23,11 +23,11 @@ class JsonImporter extends ImporterBase {
       return FALSE;
     }
 
-    if (!isset($data->persons)) {
+    if (!isset($data->data)) {
       return FALSE;
     }
 
-    $persons = $data->persons;
+    $persons = $data->data;
     foreach ($persons as $person) {
       $this->persistPerson($person);
     }
@@ -45,8 +45,8 @@ class JsonImporter extends ImporterBase {
     $config = $this->configuration['config'];
     $request = $this->httpClient->get($config->getUrl()->toString());
     $string = $request->getBody()->getContents();
-    var_dump(json_decode($string)->data->id); die();
-    return json_decode($string)->data;
+    //var_dump(json_decode($string)->data[0]); die(); // returns the first object from the array of objects
+    return json_decode($string);
   }
 
   /**

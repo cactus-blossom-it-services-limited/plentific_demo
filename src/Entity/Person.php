@@ -95,7 +95,7 @@ final class Person extends ContentEntityBase implements PersonInterface {
   /**
    * {@inheritdoc}
    */
-  public function getSurname() {
+  public function getLastname() {
     return $this->get('surname')->value;
   }
 
