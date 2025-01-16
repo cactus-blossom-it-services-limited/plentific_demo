@@ -7,6 +7,7 @@ namespace Drupal\plentific_demo\Plugin;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Component\Plugin\PluginBase;
 use Drupal\Core\Entity\EntityTypeManager;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use GuzzleHttp\Client;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\plentific_demo\Entity\ImporterInterface;
@@ -16,7 +17,7 @@ use Drupal\plentific_demo\Entity\ImporterInterface;
 /**
  * Base class for importer plugins.
  */
-abstract class ImporterBase extends PluginBase implements ImporterPluginInterface {
+abstract class ImporterBase extends PluginBase implements ImporterPluginInterface, ContainerFactoryPluginInterface {
   /**
    * @var \Drupal\Core\Entity\EntityTypeManager
    */

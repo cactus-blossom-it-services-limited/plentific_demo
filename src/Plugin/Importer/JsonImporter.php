@@ -17,7 +17,7 @@ class JsonImporter extends ImporterBase {
   /**
    * {@inheritdoc}
    */
-  public function import() {
+  public function import(): bool {
     $data = $this->getData();
     if (!$data) {
       return FALSE;
