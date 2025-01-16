@@ -1,0 +1,6 @@
+services:
+  persons.commands:
+    class: Drupal\plentific_demo\Drush\Commands\PersonCommands
+    arguments: ['@importerManager']
+    tags:
+      - { name: drush.command }

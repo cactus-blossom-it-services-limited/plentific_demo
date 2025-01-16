@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\plentific_demo\Commands;
+namespace Drupal\plentific_demo\Drush\Commands;
 
 use Drupal\plentific_demo\Plugin\ImporterPluginInterface;
 use Drush\Commands\DrushCommands;
@@ -17,7 +17,7 @@ class PersonCommands extends DrushCommands {
    *
    * @var \Drupal\plentific_demo\Plugin\ImporterManager
    */
-  protected $importerManager;
+  protected ImporterManager $importerManager;
 
   /**
    * ProductCommands constructor.
@@ -26,6 +26,7 @@ class PersonCommands extends DrushCommands {
    *   The importer manager.
    */
   public function __construct(ImporterManager $importerManager) {
+    parent::__construct();
     $this->importerManager = $importerManager;
   }
 
