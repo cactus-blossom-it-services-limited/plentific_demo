@@ -1,7 +1,12 @@
 {
     "name": "drupal/plentific_demo",
-    "description": "A demo module",
+    "description": "Importing persons from many sources.",
     "type": "drupal-custom-module",
+    "autoload": {
+        "psr-4": {
+            "Drupal\\plentific_demo\\": "src/"
+        }
+    },
     "license": "GPL-2.0-or-later",
     "authors": [
         {
@@ -10,5 +15,12 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {}
+    "require": {},
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^10"
+            }
+        }
+    }
 }
