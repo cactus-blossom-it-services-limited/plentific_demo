@@ -19,6 +19,7 @@ class PersonListBuilder extends EntityListBuilder {
     $header['email'] = $this->t('Email Address');
     $header['firstname'] = $this->t('First Name');
     $header['surname'] = $this->t('Last Name');
+    $header['status'] = $this->t('Status');
     return $header + parent::buildHeader();
   }
 
@@ -32,6 +33,7 @@ class PersonListBuilder extends EntityListBuilder {
     $row['email'] = $entity->getEmail();
     $row['firstname'] = $entity->getFirstname();
     $row['surname'] = $entity->getLastname();
+    $row['status'] = $entity->get('status')->value ? $this->t('Enabled') : $this->t('Disabled');
     return $row + parent::buildRow($entity);
   }
 

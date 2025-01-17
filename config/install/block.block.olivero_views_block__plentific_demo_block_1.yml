@@ -1,3 +1,4 @@
+uuid: e1f3abec-70fa-45a0-ace7-b9e72a637cba
 langcode: en
 status: true
 dependencies:
@@ -7,6 +8,8 @@ dependencies:
     - views
   theme:
     - olivero
+_core:
+  default_config_hash: hOCRB08mbn_u3WYlpycjBYRQAu5QbFlXEMD6rsXBkio
 id: olivero_views_block__plentific_demo_block_1
 theme: olivero
 region: content
