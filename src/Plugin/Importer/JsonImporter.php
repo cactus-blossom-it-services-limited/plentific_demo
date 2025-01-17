@@ -44,7 +44,6 @@ class JsonImporter extends ImporterBase {
     $config = $this->configuration['config'];
     $request = $this->httpClient->get($config->getUrl()->toString());
     $string = $request->getBody()->getContents();
-    //var_dump(json_decode($string)->data[0]); die(); // returns the first object from the array of objects
     return json_decode($string);
   }
 
@@ -62,7 +61,6 @@ class JsonImporter extends ImporterBase {
       'name' => $data->id,
     ]);
     if (!$existing) {
-      var_dump($config);
       $values = [
         'remote_id' => $data->id,
         'type' => $config->getBundle(),
