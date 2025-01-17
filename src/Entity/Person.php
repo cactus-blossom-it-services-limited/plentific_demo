@@ -113,22 +113,6 @@ final class Person extends ContentEntityBase implements PersonInterface {
     return $this;
   }
 
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getRemoteId() {
-    return $this->get('remote_id')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setRemoteId($id) {
-    $this->set('remote_id', $id);
-    return $this;
-  }
-
   /**
    * {@inheritdoc}
    */

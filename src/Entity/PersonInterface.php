@@ -15,16 +15,16 @@ interface PersonInterface extends ContentEntityInterface, EntityChangedInterface
   /**
    * Gets the person name.
    *
-   * @return string
-   *   The name.
+   * @return integer
+   *   The ID.
    */
   public function getName();
 
   /**
-   * Sets the person name.
+   * Sets the person ID.
    *
-   * @param string $name
-   *   The name.
+   * @param integer $name
+   *   The ID.
    *
    * @return \Drupal\plentific_demo\Entity\PersonInterface
    *   The called person entity.
@@ -88,25 +88,6 @@ interface PersonInterface extends ContentEntityInterface, EntityChangedInterface
    *   The called Person entity.
    */
   public function setLastname(string $surname);
-
-  /**
-   * Gets the Person remote ID.
-   *
-   * @return string
-   *   The Person remote ID.
-   */
-  public function getRemoteId();
-
-  /**
-   * Sets the Person remote ID.
-   *
-   * @param string $id
-   *   The Person remote ID.
-   *
-   * @return \Drupal\plentific_demo\Entity\PersonInterface
-   *   The called Person entity.
-   */
-  public function setRemoteId($id);
 
   /**
    * Gets the Person creation timestamp.

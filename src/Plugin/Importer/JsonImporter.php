@@ -59,7 +59,7 @@ class JsonImporter extends ImporterBase {
     $config = $this->configuration['config'];
 
     $existing = $this->entityTypeManager->getStorage('person')->loadByProperties([
-      'remote_id' => $data->id,
+      'name' => $data->id,
     ]);
     if (!$existing) {
       var_dump($config);
@@ -69,7 +69,7 @@ class JsonImporter extends ImporterBase {
       ];
       /** @var \Drupal\plentific_demo\Entity\PersonInterface $person */
       $person = $this->entityTypeManager->getStorage('person')->create($values);
-      $person->setRemoteId($data->id);
+      $person->setName($data->id);
       $person->setEmail($data->email);
       $person->setFirstname($data->first_name);
       $person->setLastname($data->last_name);
@@ -83,7 +83,7 @@ class JsonImporter extends ImporterBase {
 
     /** @var \Drupal\plentific_demo\Entity\PersonInterface $person */
     $person = reset($existing);
-    $person->setRemoteId($data->id);
+    $person->setName($data->id);
     $person->setEmail($data->email);
     $person->setFirstname($data->first_name);
     $person->setLastname($data->last_name);
