@@ -13,15 +13,14 @@ For example, only one table is created for the 'Person' content entity (named 'p
 whereas a custom node type creates a separate table for each field. Also, the extra baggage
 of revisions has been removed.
 
-The primary use case for this module is:
-
-- Use case #1
-- Use case #2
-- Use case #3
-
 ## REQUIREMENTS
-
-DESCRIBE_MODULE_DEPENDENCIES_HERE
+- The module has been tested on the latest Drupal 10 version: Drupal 10.4.1
+- Setup a Drupal 10 site (latest version) using eg the Drupal 10 DDEV quickstart
+- Install drupal/drush using composer
+- Create a folder named 'custom' inside '/web/modules/'
+- Copy the modules into the 'custom' folder
+- Or edit the root composer.json to install the module using the module composer.json
+- The module depends on the core block module
 
 ## INSTALLATION
 
@@ -29,8 +28,13 @@ Install as you would normally install a contributed Drupal module.
 See: https://www.drupal.org/node/895232 for further information.
 
 ## CONFIGURATION
-- Configuration step #1
-- Configuration step #2
-- Configuration step #3
+-
+-
+
+## Further Enhancements
+- Create a custom admin permission for the custom entities for more granularity
+- At the moment viewing the 'person' entities CRUD operations requires 'access site configuration'
+- A custom block was created named 'Plentific API'. It is currently redundant.
+- But it could be enhanced and used in preference to the imported custom block inside config/install
 
 
