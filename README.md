@@ -23,13 +23,26 @@ of revisions has been removed.
 - The module depends on the core block module
 
 ## INSTALLATION
-
-Install as you would normally install a contributed Drupal module.
-See: https://www.drupal.org/node/895232 for further information.
+- Install as you would normally install a contributed Drupal module.
+- See: https://www.drupal.org/node/895232 for further information.
+- Or run `ddev drush pm-enable plentific_demo`
+- Login to the site as User 1
+- The module installation imports a custom block 'Plentific Demo'
+- It is visible on every page in the 'Content' region
+- It also imports a custom view named 'Plentific Demo'
 
 ## CONFIGURATION
--
--
+- Go to `/admin/structure`
+- Click on the 'Person list' link and click the button 'Add person'
+- Click the link 'Add a new person type' to create a 'person' content entity bundle
+- Fill in the label e.g. 'Basic' and save
+- Go to 'admin/structure/importer'
+- Click 'Add Importer'
+- Put something for name e.g. 'Regres'
+- For Url put: 'https://reqres.in/api/users?page=1&per_page=12&total=12'
+- Select the 'Json Importer' plugin
+- For 'person type' select e.g. 'Basic' (autocomplete will find the Person bundle you created)
+- Save
 
 ## Further Enhancements
 - Create a custom admin permission for the custom entities for more granularity
