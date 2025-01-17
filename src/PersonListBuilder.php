@@ -15,7 +15,10 @@ class PersonListBuilder extends EntityListBuilder {
    */
   public function buildHeader() {
     $header['id'] = $this->t('Person ID');
-    $header['name'] = $this->t('Name');
+    $header['name'] = $this->t('Remote ID');
+    $header['email'] = $this->t('Email Address');
+    $header['firstname'] = $this->t('First Name');
+    $header['surname'] = $this->t('Last Name');
     return $header + parent::buildHeader();
   }
 
@@ -25,7 +28,10 @@ class PersonListBuilder extends EntityListBuilder {
   public function buildRow(EntityInterface $entity) {
     /* @var $entity \Drupal\plentific_demo\Entity\Person */
     $row['id'] = $entity->id();
-    $row['name'] = $entity->toLink();
+    $row['name'] = $entity->getName();
+    $row['email'] = $entity->getEmail();
+    $row['firstname'] = $entity->getFirstname();
+    $row['surname'] = $entity->getLastname();
     return $row + parent::buildRow($entity);
   }
 
