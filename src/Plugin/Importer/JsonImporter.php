@@ -26,7 +26,6 @@ class JsonImporter extends ImporterBase {
     if (!isset($data->data)) {
       return FALSE;
     }
-
     $persons = $data->data;
     foreach ($persons as $person) {
       $this->persistPerson($person);
@@ -63,6 +62,7 @@ class JsonImporter extends ImporterBase {
       'remote_id' => $data->id,
     ]);
     if (!$existing) {
+      var_dump($config);
       $values = [
         'remote_id' => $data->id,
         'type' => $config->getBundle(),

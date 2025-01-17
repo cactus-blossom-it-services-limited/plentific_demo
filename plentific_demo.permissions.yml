@@ -1,7 +1,0 @@
-administer importer:
-  title: 'Administer importer'
-
-administer person types:
-  title: 'Administer person types'
-  description: 'Maintain the types of person entity.'
-  restrict access: true

@@ -12,42 +12,34 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  * @ConfigEntityType(
  *   id = "person_type",
  *   label = @Translation("Person type"),
- *   label_collection = @Translation("Person types"),
- *   label_singular = @Translation("person type"),
- *   label_plural = @Translation("persons types"),
- *   label_count = @PluralTranslation(
- *     singular = "@count persons type",
- *     plural = "@count persons types",
- *   ),
  *   handlers = {
  *     "form" = {
  *       "add" = "Drupal\plentific_demo\Form\PersonTypeForm",
  *       "edit" = "Drupal\plentific_demo\Form\PersonTypeForm",
  *       "delete" = "Drupal\Core\Entity\EntityDeleteForm",
  *     },
- *     "list_builder" = "Drupal\plentific_demo\PersonTypeListBuilder",
  *     "route_provider" = {
  *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
  *     },
  *   },
- *   admin_permission = "administer person types",
- *   bundle_of = "person",
  *   config_prefix = "person_type",
+ *   admin_permission = "administer site configuration",
+ *   bundle_of = "person",
  *   entity_keys = {
  *     "id" = "id",
  *     "label" = "label",
- *     "uuid" = "uuid",
+ *     "uuid" = "uuid"
  *   },
  *   links = {
- *     "add-form" = "/admin/structure/person_types/add",
- *     "edit-form" = "/admin/structure/person_types/manage/{person_type}",
- *     "delete-form" = "/admin/structure/person_types/manage/{person_type}/delete",
- *     "collection" = "/admin/structure/person_types",
+ *     "canonical" = "/admin/structure/person_type/{person_type}",
+ *     "add-form" = "/admin/structure/person_type/add",
+ *     "edit-form" = "/admin/structure/person_type/{person_type}/edit",
+ *     "delete-form" = "/admin/structure/person_type/{person_type}/delete",
+ *     "collection" = "/admin/structure/person_type"
  *   },
  *   config_export = {
  *     "id",
- *     "label",
- *     "uuid",
+ *     "label"
  *   },
  * )
  */
@@ -57,10 +49,5 @@ final class PersonType extends ConfigEntityBundleBase {
    * The machine name of this person type.
    */
   protected string $id;
-
-  /**
-   * The human-readable name of the person type.
-   */
-  protected string $label;
 
 }

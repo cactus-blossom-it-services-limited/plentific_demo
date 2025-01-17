@@ -8,7 +8,6 @@ use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\plentific_demo\Entity\PersonInterface;
 
 /**
  * Defines the person entity class.
@@ -16,43 +15,35 @@ use Drupal\plentific_demo\Entity\PersonInterface;
  * @ContentEntityType(
  *   id = "person",
  *   label = @Translation("Person"),
- *   label_collection = @Translation("Persons"),
- *   label_singular = @Translation("person"),
- *   label_plural = @Translation("persons"),
- *   label_count = @PluralTranslation(
- *     singular = "@count persons",
- *     plural = "@count persons",
- *   ),
  *   bundle_label = @Translation("Person type"),
  *   handlers = {
  *     "list_builder" = "Drupal\plentific_demo\PersonListBuilder",
  *     "views_data" = "Drupal\plentific_demo\PersonEntityViewsData",
  *     "form" = {
+ *       "default" = "Drupal\plentific_demo\Form\PersonForm",
  *       "add" = "Drupal\plentific_demo\Form\PersonForm",
  *       "edit" = "Drupal\plentific_demo\Form\PersonForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
- *       "delete-multiple-confirm" = "Drupal\Core\Entity\Form\DeleteMultipleForm",
  *     },
  *     "route_provider" = {
  *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
  *     },
  *   },
  *   base_table = "person",
- *   admin_permission = "administer person types",
+ *   admin_permission = "administer site configuration",
  *   entity_keys = {
  *     "id" = "id",
- *     "bundle" = "bundle",
- *     "label" = "id",
+ *     "label" = "name",
  *     "uuid" = "uuid",
+ *     "bundle" = "type"
  *   },
  *   links = {
- *     "collection" = "/admin/content/person",
- *     "add-form" = "/person/add/{person_type}",
- *     "add-page" = "/person/add",
- *     "canonical" = "/person/{person}",
- *     "edit-form" = "/person/{person}/edit",
- *     "delete-form" = "/person/{person}/delete",
- *     "delete-multiple-form" = "/admin/content/person/delete-multiple",
+ *     "canonical" = "/admin/structure/person/{person}",
+ *     "add-form" = "/admin/structure/person/add/{person_type}",
+ *     "add-page" = "/admin/structure/person/add",
+ *     "edit-form" = "/admin/structure/person/{person}/edit",
+ *     "delete-form" = "/admin/structure/person/{person}/delete",
+ *     "collection" = "/admin/structure/person",
  *   },
  *   bundle_entity_type = "person_type",
  *   field_ui_base_route = "entity.person_type.edit_form",
@@ -61,6 +52,21 @@ use Drupal\plentific_demo\Entity\PersonInterface;
 final class Person extends ContentEntityBase implements PersonInterface {
 
   use EntityChangedTrait;
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getName() {
+    return $this->get('name')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setName($name) {
+    $this->set('name', $name);
+    return $this;
+  }
 
   /**
    * {@inheritdoc}

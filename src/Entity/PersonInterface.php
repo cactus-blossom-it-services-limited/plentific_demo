@@ -13,6 +13,26 @@ use Drupal\Core\Entity\EntityChangedInterface;
 interface PersonInterface extends ContentEntityInterface, EntityChangedInterface {
 
   /**
+   * Gets the person name.
+   *
+   * @return string
+   *   The name.
+   */
+  public function getName();
+
+  /**
+   * Sets the person name.
+   *
+   * @param string $name
+   *   The name.
+   *
+   * @return \Drupal\plentific_demo\Entity\PersonInterface
+   *   The called person entity.
+   */
+  public function setName($name);
+
+
+  /**
    * Gets the Person email address.
    *
    * @return string

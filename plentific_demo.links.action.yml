@@ -1,17 +1,17 @@
+entity.person.add_page:
+  route_name: entity.person.add_page
+  title: 'Add person'
+  appears_on:
+    - entity.person.collection
+
 entity.importer.add_form:
   route_name: 'entity.importer.add_form'
-  title: 'Add importer'
+  title: 'Add Importer'
   appears_on:
     - entity.importer.collection
 
-person.type_add:
+entity.person_type.add_form:
+  route_name: 'entity.person_type.add_form'
   title: 'Add person type'
-  route_name: entity.person_type.add_form
   appears_on:
     - entity.person_type.collection
-
-person.add_page:
-  title: 'Add person'
-  route_name: entity.person.add_page
-  appears_on:
-    - entity.person.collection

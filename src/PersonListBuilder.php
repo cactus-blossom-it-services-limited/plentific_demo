@@ -1,35 +1,31 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\plentific_demo;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 
 /**
- * Provides a list controller for the person entity type.
+ * EntityListBuilderInterface implementation for the Person entities.
  */
-final class PersonListBuilder extends EntityListBuilder {
+class PersonListBuilder extends EntityListBuilder {
 
   /**
    * {@inheritdoc}
    */
-  public function buildHeader(): array {
-    $header['id'] = $this->t('ID');
-    $header['created'] = $this->t('Created');
-    $header['changed'] = $this->t('Updated');
+  public function buildHeader() {
+    $header['id'] = $this->t('Person ID');
+    $header['name'] = $this->t('Name');
     return $header + parent::buildHeader();
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildRow(EntityInterface $entity): array {
-    /** @var \Drupal\plentific_demo\PersonInterface $entity */
-    $row['id'] = $entity->toLink();
-    $row['created']['data'] = $entity->get('created')->view(['label' => 'hidden']);
-    $row['changed']['data'] = $entity->get('changed')->view(['label' => 'hidden']);
+  public function buildRow(EntityInterface $entity) {
+    /* @var $entity \Drupal\plentific_demo\Entity\Person */
+    $row['id'] = $entity->id();
+    $row['name'] = $entity->toLink();
     return $row + parent::buildRow($entity);
   }
 

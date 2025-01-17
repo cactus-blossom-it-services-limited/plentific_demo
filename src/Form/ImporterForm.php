@@ -106,6 +106,15 @@ class ImporterForm extends EntityForm {
       '#default_value' => $importer->updateExisting(),
     ];
 
+    $form['bundle'] = [
+      '#type' => 'entity_autocomplete',
+      '#target_type' => 'person_type',
+      '#title' => $this->t('Person type'),
+      '#default_value' => $importer->getBundle() ? $this->entityTypeManager->getStorage('person_type')->load($importer->getBundle()) : NULL,
+      '#description' => $this->t('The type of persons that need to be created.'),
+      '#required' => TRUE,
+    ];
+
     return $form;
   }
 

@@ -8,33 +8,29 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\Core\Url;
 
 /**
- * Defines the importer entity type.
+ * Defines the Importer entity type.
  *
  * @ConfigEntityType(
  *   id = "importer",
  *   label = @Translation("Importer"),
- *   label_collection = @Translation("Importers"),
- *   label_singular = @Translation("importer"),
- *   label_plural = @Translation("importers"),
- *   label_count = @PluralTranslation(
- *     singular = "@count importer",
- *     plural = "@count importers",
- *   ),
  *   handlers = {
  *     "list_builder" = "Drupal\plentific_demo\ImporterListBuilder",
  *     "form" = {
  *       "add" = "Drupal\plentific_demo\Form\ImporterForm",
  *       "edit" = "Drupal\plentific_demo\Form\ImporterForm",
- *       "delete" = "Drupal\Core\Entity\EntityDeleteForm",
+ *       "delete" = "Drupal\plentific_demo\Form\ImporterDeleteForm",
+ *     },
+ *     "route_provider" = {
+ *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
  *     },
  *   },
  *   config_prefix = "importer",
  *   admin_permission = "administer site configuration",
  *   links = {
- *     "collection" = "/admin/structure/importer",
  *     "add-form" = "/admin/structure/importer/add",
- *     "edit-form" = "/admin/structure/importer/{importer}",
+ *     "edit-form" = "/admin/structure/importer/{importer}/edit",
  *     "delete-form" = "/admin/structure/importer/{importer}/delete",
+ *     "collection" = "/admin/structure/importer"
  *   },
  *   entity_keys = {
  *     "id" = "id",
@@ -44,11 +40,10 @@ use Drupal\Core\Url;
  *   config_export = {
  *     "id",
  *     "label",
- *     "description",
  *     "url",
  *     "plugin",
  *     "update_existing",
- *     "source"
+ *     "bundle"
  *   },
  * )
  */
@@ -90,13 +85,6 @@ final class Importer extends ConfigEntityBase implements ImporterInterface {
   protected $update_existing = TRUE;
 
   /**
-   * The source of the products.
-   *
-   * @var string
-   */
-  protected $source;
-
-  /**
    * The product bundle.
    *
    * @var string
@@ -130,6 +118,5 @@ final class Importer extends ConfigEntityBase implements ImporterInterface {
   public function getBundle() {
     return $this->bundle;
   }
-
 
 }

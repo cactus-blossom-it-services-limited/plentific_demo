@@ -1,24 +1,20 @@
-plentific_demo.api_settings:
-  title: Api settings
-  description: Plentific API configuration
-  parent: system.admin_config_system
-  route_name: plentific_demo.api_settings
-  weight: 10
-
-entity.importer.overview:
-  title: Importers
+entity.person.collection:
+  title: 'Person list'
+  route_name: entity.person.collection
+  description: 'List person entities'
   parent: system.admin_structure
-  description: 'List of importers to extend site functionality.'
+  weight: 100
+
+entity.importer.collection:
+  title: 'Importer list'
   route_name: entity.importer.collection
+  description: 'List Importer entities'
+  parent: system.admin_structure
+  weight: 99
 
 entity.person_type.collection:
   title: 'Person types'
-  description: 'Manage and CRUD actions on Person type.'
-  parent: system.admin_structure
   route_name: entity.person_type.collection
-
-entity.person.collection:
-  title: 'Persons'
-  description: 'List of persons.'
-  route_name: entity.person.collection
-  parent: system.admin_content
+  description: 'List person bundles'
+  parent: system.admin_structure
+  weight: 99

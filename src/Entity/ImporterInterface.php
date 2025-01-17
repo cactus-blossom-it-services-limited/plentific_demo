@@ -25,10 +25,10 @@ interface ImporterInterface extends ConfigEntityInterface {
    */
   public function getPluginId();
   /**
-   * Whether or not to update existing products if they have already been imported.
+   * Whether or not to update existing persons if they have already been imported.
    *
    * @return bool
    */
   public function updateExisting();
-  
+
 }

@@ -17,18 +17,14 @@ block.settings.plentific_demo_plentific_api:
 
 plentific_demo.importer.*:
   type: config_entity
-  label: Importer
+  label: 'Importer config'
   mapping:
     id:
       type: string
-      label: ID
+      label: 'ID'
     label:
       type: label
-      label: Label
-    uuid:
-      type: string
-    description:
-      type: string
+      label: 'Label'
     url:
       type: uri
       label: Uri
@@ -37,7 +33,18 @@ plentific_demo.importer.*:
       label: Plugin ID
     update_existing:
       type: boolean
-      label: Whether to update existing users
+      label: Whether to update existing persons
     bundle:
       type: string
       label: The person bundle
+
+plentific_demo.person_type.*:
+  type: config_entity
+  label: 'Person type config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'

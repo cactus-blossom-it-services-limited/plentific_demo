@@ -10,38 +10,29 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Form controller for the person entity edit forms.
  */
-final class PersonForm extends ContentEntityForm {
+class PersonForm extends ContentEntityForm {
 
   /**
    * {@inheritdoc}
    */
-  public function save(array $form, FormStateInterface $form_state): int {
-    $result = parent::save($form, $form_state);
+  public function save(array $form, FormStateInterface $form_state) {
+    $entity = $this->entity;
 
-    $message_args = ['%label' => $this->entity->toLink()->toString()];
-    $logger_args = [
-      '%label' => $this->entity->label(),
-      'link' => $this->entity->toLink($this->t('View'))->toString(),
-    ];
+    $status = parent::save($form, $form_state);
 
-    switch ($result) {
+    switch ($status) {
       case SAVED_NEW:
-        $this->messenger()->addStatus($this->t('New person %label has been created.', $message_args));
-        $this->logger('plentific_demo')->notice('New person %label has been created.', $logger_args);
-        break;
-
-      case SAVED_UPDATED:
-        $this->messenger()->addStatus($this->t('The person %label has been updated.', $message_args));
-        $this->logger('plentific_demo')->notice('The person %label has been updated.', $logger_args);
+        $this->messenger()->addMessage($this->t('Created the %label person.', [
+          '%label' => $entity->label(),
+        ]));
         break;
 
       default:
-        throw new \LogicException('Could not save the entity.');
+        $this->messenger()->addMessage($this->t('Saved the %label person.', [
+          '%label' => $entity->label(),
+        ]));
     }
-
-    $form_state->setRedirectUrl($this->entity->toUrl());
-
-    return $result;
+    $form_state->setRedirect('entity.person.canonical', ['person' => $entity->id()]);
   }
 
 }

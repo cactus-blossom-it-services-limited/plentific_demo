@@ -1,77 +1,85 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\plentific_demo\Form;
 
-use Drupal\Core\Entity\BundleEntityFormBase;
-use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\plentific_demo\Entity\PersonType;
+use Drupal\Core\Messenger\MessengerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Form handler for person type forms.
+ * Form handler for creating/editing PersonType entities.
  */
-final class PersonTypeForm extends BundleEntityFormBase {
+class PersonTypeForm extends EntityForm {
+
+  /**
+   * PersonTypeForm constructor.
+   *
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   *   The messenger.
+   */
+  public function __construct(MessengerInterface $messenger) {
+    $this->messenger = $messenger;
+  }
 
   /**
    * {@inheritdoc}
    */
-  public function form(array $form, FormStateInterface $form_state): array {
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('messenger')
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
 
-    if ($this->operation === 'edit') {
-      $form['#title'] = $this->t('Edit %label person type', ['%label' => $this->entity->label()]);
-    }
-
+    /** @var \Drupal\plentific_demo\Entity\PersonTypeInterface $person_type */
+    $person_type = $this->entity;
     $form['label'] = [
-      '#title' => $this->t('Label'),
       '#type' => 'textfield',
-      '#default_value' => $this->entity->label(),
-      '#description' => $this->t('The human-readable name of this person type.'),
+      '#title' => $this->t('Label'),
+      '#maxlength' => 255,
+      '#default_value' => $person_type->label(),
+      '#description' => $this->t('Label for the Person type.'),
       '#required' => TRUE,
     ];
 
     $form['id'] = [
       '#type' => 'machine_name',
-      '#default_value' => $this->entity->id(),
-      '#maxlength' => EntityTypeInterface::BUNDLE_MAX_LENGTH,
+      '#default_value' => $person_type->id(),
       '#machine_name' => [
-        'exists' => [PersonType::class, 'load'],
-        'source' => ['label'],
+        'exists' => '\Drupal\plentific_demo\Entity\PersonType::load',
       ],
-      '#description' => $this->t('A unique machine-readable name for this person type. It must only contain lowercase letters, numbers, and underscores.'),
+      '#disabled' => !$person_type->isNew(),
     ];
 
-    return $this->protectBundleIdElement($form);
+    return $form;
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function actions(array $form, FormStateInterface $form_state): array {
-    $actions = parent::actions($form, $form_state);
-    $actions['submit']['#value'] = $this->t('Save person type');
-    $actions['delete']['#value'] = $this->t('Delete person type');
-    return $actions;
-  }
+  public function save(array $form, FormStateInterface $form_state) {
+    $person_type = $this->entity;
+    $status = $person_type->save();
 
-  /**
-   * {@inheritdoc}
-   */
-  public function save(array $form, FormStateInterface $form_state): int {
-    $result = parent::save($form, $form_state);
+    switch ($status) {
+      case SAVED_NEW:
+        $this->messenger->addMessage($this->t('Created the %label person type.', [
+          '%label' => $person_type->label(),
+        ]));
+        break;
 
-    $message_args = ['%label' => $this->entity->label()];
-    $this->messenger()->addStatus(
-      match($result) {
-        SAVED_NEW => $this->t('The person type %label has been added.', $message_args),
-        SAVED_UPDATED => $this->t('The person type %label has been updated.', $message_args),
-      }
-    );
-    $form_state->setRedirectUrl($this->entity->toUrl('collection'));
-
-    return $result;
+      default:
+        $this->messenger->addMessage($this->t('Saved the %label person type.', [
+          '%label' => $person_type->label(),
+        ]));
+    }
+    $form_state->setRedirectUrl($person_type->toUrl('collection'));
   }
 
 }
