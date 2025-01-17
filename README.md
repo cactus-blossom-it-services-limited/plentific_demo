@@ -50,10 +50,26 @@ of revisions has been removed.
 - The view is configured to display a table with table headings
 - You can edit the view display to change the heading text for each field
 
+## FILTER USERS USING DRUSH
+- Since the drush import command stores the 'persons' as content entities, they can be managed using drush commmands
+- See: `ddev drush entity:delete --help`
+- To delete 'persons' with Person ID 1 and 3: `drush entity:delete person 1,3`
+- Users can also be deleted in the UI
+- Users can also be filtered by editing the block view settings
+
+## FURTHER CONFIGURATION
+- Person bundles e.g. 'Basic' are each fieldable in the UI. So you can add or remove fields per bundle
+- That way of the Regres API add fields for users you can capture that data by adding fields
+- You would also edit the 'Json Importer' plugin accordingly
+- You can create new importer plugins to import 'persons' from other sources e.g. CSV files, SOAP, XML
+- Such importers can be associated with new content and configuration entities (if you are importing other types of data)
+
 ## Further Enhancements
 - Create a custom admin permission for the custom entities for more granularity
 - At the moment viewing the 'person' entities CRUD operations requires 'access site configuration'
 - A custom block was created named 'Plentific API'. It is currently redundant.
-- But it could be enhanced and used in preference to the imported custom block inside config/install
+- But it could be enhanced and used in preference to the imported custom block 'Plentific Demo' inside config/install
+- Custom content entities can include a 'status' base field so users can toggle between 'published' and 'unpublished'
+- That would be a simpler way to filter particular 'persons' from the listing
 
 
