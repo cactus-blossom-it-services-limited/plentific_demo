@@ -16,7 +16,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  *     "form" = {
  *       "add" = "Drupal\plentific_demo\Form\PersonTypeForm",
  *       "edit" = "Drupal\plentific_demo\Form\PersonTypeForm",
- *       "delete" = "Drupal\Core\Entity\EntityDeleteForm",
+ *       "delete" = "Drupal\plentific_demo\Form\PersonTypeDeleteForm",
  *     },
  *     "route_provider" = {
  *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",

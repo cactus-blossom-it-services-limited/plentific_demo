@@ -79,7 +79,7 @@ class PersonTypeForm extends EntityForm {
           '%label' => $person_type->label(),
         ]));
     }
-    $form_state->setRedirectUrl($person_type->toUrl('collection'));
+    $form_state->setRedirect('entity.person.collection');
   }
 
 }
