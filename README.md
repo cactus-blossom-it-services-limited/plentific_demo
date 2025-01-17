@@ -43,6 +43,12 @@ of revisions has been removed.
 - Select the 'Json Importer' plugin
 - For 'person type' select e.g. 'Basic' (autocomplete will find the Person bundle you created)
 - Save
+- Run the drush command `ddev drush persons-import-run`
+- See the 'persons' displayed in the 'Plentific Demo' block
+- Logged in as admin, use the context menu of the block/ view to edit the view display pagination
+- Change the number of items to display per page
+- The view is configured to display a table with table headings
+- You can edit the view display to change the heading text for each field
 
 ## Further Enhancements
 - Create a custom admin permission for the custom entities for more granularity
