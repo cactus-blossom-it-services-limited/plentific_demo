@@ -150,6 +150,25 @@ final class Person extends ContentEntityBase implements PersonInterface {
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array {
     $fields = parent::baseFieldDefinitions($entity_type);
 
+    $fields['name'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('ID'))
+      ->setDescription(t('The Person ID.'))
+      ->setSettings([
+        'min' => 1,
+        'max' => 1000,
+      ])
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'number_unformatted',
+        'weight' => -6,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'number',
+        'weight' => -6,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     $fields['email'] = BaseFieldDefinition::create('email')
       ->setLabel(t('Email'))
       ->setDescription(t('The Person\'s email address.'))
@@ -205,25 +224,6 @@ final class Person extends ContentEntityBase implements PersonInterface {
       ->setDisplayOptions('form', [
         'type' => 'string_textfield',
         'weight' => -3,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['remote_id'] = BaseFieldDefinition::create('integer')
-      ->setLabel(t('Remote ID'))
-      ->setDescription(t('The Person remote ID.'))
-      ->setSettings([
-        'min' => 1,
-        'max' => 1000,
-      ])
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'number_unformatted',
-        'weight' => -6,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'number',
-        'weight' => -6,
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
