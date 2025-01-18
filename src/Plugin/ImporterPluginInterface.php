@@ -9,6 +9,7 @@ use Drupal\Component\Plugin\PluginInspectionInterface;
  */
 interface ImporterPluginInterface extends
   PluginInspectionInterface {
+
   /**
    * Performs the import.
    *

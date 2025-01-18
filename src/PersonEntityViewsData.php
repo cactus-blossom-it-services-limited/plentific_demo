@@ -1,12 +1,12 @@
 <?php
-/**
- * @file
- */
 
 namespace Drupal\plentific_demo;
 
 use Drupal\views\EntityViewsData;
 
+/**
+ *
+ */
 class PersonEntityViewsData extends EntityViewsData {
 
   /**
@@ -16,7 +16,6 @@ class PersonEntityViewsData extends EntityViewsData {
     $data = parent::getViewsData();
 
     // Add your custom data descriptions here.
-
     return $data;
   }
 

@@ -63,7 +63,7 @@ final class PlentificApiBlock extends BlockBase implements ContainerFactoryPlugi
   public function blockForm($form, FormStateInterface $form_state): array {
     $form['number_of_items_per_page_choice'] = [
       '#type' => 'select',
-      '#options' => array('3', '4', '5', '6'),
+      '#options' => ['3', '4', '5', '6'],
       '#size' => 4,
       '#title' => $this->t('Choose the number of Items per page'),
     ];

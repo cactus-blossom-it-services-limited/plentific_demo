@@ -84,4 +84,5 @@ class ImporterManager extends DefaultPluginManager {
 
     return $plugins;
   }
+
 }

@@ -27,7 +27,7 @@ class PersonListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    /* @var $entity \Drupal\plentific_demo\Entity\Person */
+    /** @var \Drupal\plentific_demo\Entity\Person $entity */
     $row['id'] = $entity->id();
     $row['name'] = $entity->getName();
     $row['email'] = $entity->getEmail();

@@ -203,7 +203,7 @@ final class Person extends ContentEntityBase implements PersonInterface {
       ->setDisplayOptions('view', [
         'label' => 'hidden',
         'type' => 'string',
-        'weight' => -3
+        'weight' => -3,
       ])
       ->setDisplayOptions('form', [
         'type' => 'string_textfield',

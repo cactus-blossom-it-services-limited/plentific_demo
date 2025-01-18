@@ -12,8 +12,6 @@ use GuzzleHttp\Client;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\plentific_demo\Entity\ImporterInterface;
 
-
-
 /**
  * Base class for importer plugins.
  */
@@ -29,7 +27,8 @@ abstract class ImporterBase extends PluginBase implements ImporterPluginInterfac
 
   /**
    * {@inheritdoc}
-   * @throws PluginException
+   *
+   * @throws \Drupal\Component\Plugin\Exception\PluginException
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManager $entityTypeManager, Client $httpClient) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
@@ -47,7 +46,8 @@ abstract class ImporterBase extends PluginBase implements ImporterPluginInterfac
 
   /**
    * {@inheritdoc}
-   * @throws PluginException
+   *
+   * @throws \Drupal\Component\Plugin\Exception\PluginException
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(

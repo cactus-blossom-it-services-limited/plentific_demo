@@ -36,7 +36,7 @@ class PersonTest extends KernelTestBase {
       'surname' => 'Espresso',
       'status' => TRUE,
       'type' => 'person',
-      'bundle' => 'person'
+      'bundle' => 'person',
     ]);
     $this->assertNotNull($entity);
     $this->assertEquals(SAVED_NEW, $entity->save());
