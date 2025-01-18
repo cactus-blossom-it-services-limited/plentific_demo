@@ -30,7 +30,7 @@ abstract class ImporterBase extends PluginBase implements ImporterPluginInterfac
    *
    * @throws \Drupal\Component\Plugin\Exception\PluginException
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManager $entityTypeManager, Client $httpClient) {
+    final public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManager $entityTypeManager, Client $httpClient) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->entityTypeManager = $entityTypeManager;
     $this->httpClient = $httpClient;
