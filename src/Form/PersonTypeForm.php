@@ -63,7 +63,7 @@ class PersonTypeForm extends EntityForm {
   /**
    * {@inheritdoc}
    */
-  public function save(array $form, FormStateInterface $form_state) {
+  public function save(array $form, FormStateInterface $form_state): int {
     $person_type = $this->entity;
     $status = $person_type->save();
 
@@ -80,6 +80,7 @@ class PersonTypeForm extends EntityForm {
         ]));
     }
     $form_state->setRedirect('entity.person.collection');
+    return 1;
   }
 
 }

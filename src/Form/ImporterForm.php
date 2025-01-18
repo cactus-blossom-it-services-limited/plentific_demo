@@ -121,7 +121,7 @@ class ImporterForm extends EntityForm {
   /**
    * {@inheritdoc}
    */
-  public function save(array $form, FormStateInterface $form_state) {
+  public function save(array $form, FormStateInterface $form_state): int {
     /** @var \Drupal\plentific_demo\Entity\Importer $importer */
     $importer = $this->entity;
     $status = $importer->save();
@@ -140,6 +140,7 @@ class ImporterForm extends EntityForm {
     }
 
     $form_state->setRedirectUrl($importer->toUrl('collection'));
+    return 1;
   }
 
 }

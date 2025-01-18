@@ -15,21 +15,27 @@ final class Importer extends Plugin {
 
   /**
    * The plugin ID.
+   *
+   * @var int
    */
-  public readonly string $id;
+  public $id;
 
   /**
    * The human-readable name of the plugin.
    *
+   * @var \Drupal\Core\Annotation\Translation
+   *
    * @ingroup plugin_translatable
    */
-  public readonly string $title;
+  public $title;
 
   /**
    * The description of the plugin.
    *
+   * @var \Drupal\Core\Annotation\Translation
+   *
    * @ingroup plugin_translatable
    */
-  public readonly string $description;
+  public $description;
 
 }

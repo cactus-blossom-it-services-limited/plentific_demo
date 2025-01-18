@@ -15,7 +15,7 @@ class PersonForm extends ContentEntityForm {
   /**
    * {@inheritdoc}
    */
-  public function save(array $form, FormStateInterface $form_state) {
+  public function save(array $form, FormStateInterface $form_state): int {
     $entity = $this->entity;
 
     $status = parent::save($form, $form_state);
@@ -33,6 +33,7 @@ class PersonForm extends ContentEntityForm {
         ]));
     }
     $form_state->setRedirect('entity.person.canonical', ['person' => $entity->id()]);
+    return 1;
   }
 
 }

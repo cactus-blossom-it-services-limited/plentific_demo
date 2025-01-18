@@ -8,7 +8,7 @@ use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;
 use Drupal\plentific_demo\Entity\ImporterInterface;
-use Drupal\core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
  * Importer plugin manager.
