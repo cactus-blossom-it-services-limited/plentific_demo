@@ -13,7 +13,7 @@ use Symfony\Component\Yaml\Yaml;
  *
  * @group examples
  */
-class ConfigFilesValidationTest extends UnitTestCase {
+class ConfigTestValidationTest extends UnitTestCase {
 
   use FilesTestTrait;
   use RetrieveConfigFilesTrait;
@@ -26,7 +26,7 @@ class ConfigFilesValidationTest extends UnitTestCase {
    */
   public static function providerConfigFiles(): array {
     $data = [];
-    $directory = self::projectPathname('modules');
+    $directory = self::projectPathname('.');
     return self::retrieveFiles($directory, 'yml', self::configFilesCallback(...));
   }
 
