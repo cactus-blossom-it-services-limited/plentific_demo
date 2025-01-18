@@ -17,10 +17,15 @@ use Drupal\plentific_demo\Entity\ImporterInterface;
  */
 abstract class ImporterBase extends PluginBase implements ImporterPluginInterface, ContainerFactoryPluginInterface {
   /**
+   * This is used for Entity CRUD operations.
+   *
    * @var \Drupal\Core\Entity\EntityTypeManager
+   *    The EntityType manager.
    */
   protected EntityTypeManager $entityTypeManager;
   /**
+   * A Drupal wrapper for the Guzzle library.
+   *
    * @var \GuzzleHttp\Client
    */
   protected Client $httpClient;

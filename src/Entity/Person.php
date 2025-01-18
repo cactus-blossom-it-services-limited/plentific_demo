@@ -155,7 +155,7 @@ final class Person extends ContentEntityBase implements PersonInterface {
 
     $fields['email'] = BaseFieldDefinition::create('email')
       ->setLabel(t('Email'))
-      ->setDescription(t('The Person\'s email address.'))
+      ->setDescription(t("The Person's email address."))
       ->setDefaultValue('')
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)

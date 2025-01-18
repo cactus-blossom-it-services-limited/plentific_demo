@@ -13,9 +13,8 @@ interface ImporterPluginInterface extends
   /**
    * Performs the import.
    *
-   * Returns TRUE if the import was successful or FALSE otherwise.
-   *
    * @return bool
+   *   Returns TRUE if the import was successful or FALSE otherwise.
    */
   public function import(): bool;
 

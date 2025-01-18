@@ -5,7 +5,7 @@ namespace Drupal\plentific_demo;
 use Drupal\views\EntityViewsData;
 
 /**
- *
+ * This class exposes the Person entity type to views.
  */
 class PersonEntityViewsData extends EntityViewsData {
 

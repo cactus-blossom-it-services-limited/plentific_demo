@@ -2,14 +2,10 @@
 
 /**
  * @file
+ * Module hooks go here.
  */
 
 declare(strict_types=1);
-
-/**
- * @file
- * Provides a person entity type.
- */
 
 use Drupal\Core\Render\Element;
 
