@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Form handler for deleting PersonType entities.
  */
-class PersonTypeDeleteForm extends EntityConfirmFormBase {
+final class PersonTypeDeleteForm extends EntityConfirmFormBase {
 
   /**
    * PersonTypeDeleteForm constructor.

@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Form for creating/editing Importer entities.
  */
-class ImporterForm extends EntityForm {
+final class ImporterForm extends EntityForm {
 
   /**
    * The importer manager.
@@ -140,7 +140,7 @@ class ImporterForm extends EntityForm {
     }
 
     $form_state->setRedirectUrl($importer->toUrl('collection'));
-    return 1;
+    return $status;
   }
 
 }

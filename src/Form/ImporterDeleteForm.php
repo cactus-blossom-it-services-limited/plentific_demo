@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Form for deleting Importer entities.
  */
-class ImporterDeleteForm extends EntityConfirmFormBase {
+final class ImporterDeleteForm extends EntityConfirmFormBase {
 
   /**
    * ImporterDeleteForm constructor.

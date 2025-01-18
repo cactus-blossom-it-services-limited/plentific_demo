@@ -33,7 +33,7 @@ class PersonForm extends ContentEntityForm {
         ]));
     }
     $form_state->setRedirect('entity.person.canonical', ['person' => $entity->id()]);
-    return 1;
+    return $status;
   }
 
 }

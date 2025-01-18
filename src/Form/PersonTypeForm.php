@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Form handler for creating/editing PersonType entities.
  */
-class PersonTypeForm extends EntityForm {
+final class PersonTypeForm extends EntityForm {
 
   /**
    * PersonTypeForm constructor.
@@ -80,7 +80,7 @@ class PersonTypeForm extends EntityForm {
         ]));
     }
     $form_state->setRedirect('entity.person.collection');
-    return 1;
+    return $status;
   }
 
 }
